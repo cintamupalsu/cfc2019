@@ -1,0 +1,5 @@
+applications:
+- name: callforcode2019
+  memory: 128M
+  instance: 1
+  command: rake db:migrate && bin/rails server -p $PORT -e $RAILS_ENV
