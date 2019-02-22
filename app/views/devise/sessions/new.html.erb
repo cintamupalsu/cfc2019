@@ -1,26 +1,140 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+</div>
+<div id="carousel_login" class="carousel slide mt-0 pt-0" data-ride="carousel">
+  <div class="carousel-inner" style=" width:100%; height: 500px; !important;">
+    <div class="carousel-item active" data-interval="10000">
+      <%= image_tag("csel/saigai02.jpg", alt:"sbs image", class: "d-block w-100", id: "csel_image") %>
+      <div class="carousel-caption d-none d-md-block">
+        <p class="bg-success">Minimizing the lost from natural disaster</p>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signupModal">
+          Sign up
+        </button>
+      </div>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    <div class="carousel-item" data-interval="10000">
+      <%= image_tag("csel/SBS02.jpg", alt:"sbs image", class: "d-block w-100", id: "csel_image") %>
+      <div class="carousel-caption d-none d-md-block">
+        <p class="bg-danger">Keep update with the last information to realized the harm posibilities</p>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signupModal">
+          Sign up
+        </button>
+      </div>
+    </div>
+    <div class="carousel-item" data-interval="10000">
+      <%= image_tag("csel/saigai01.jpg", alt:"sbs image", class: "d-block w-100", id: "csel_image") %>
+      <div class="carousel-caption d-none d-md-block">
+        <p class="bg-warning">Auto recognizing condition powered by IBM</p>
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#signupModal">
+          Sign up
+        </button>
+      </div>
+    </div>
+    <div class="carousel-item" data-interval="10000">
+      <%= image_tag("csel/SBS03.jpg", alt:"sbs image", class: "d-block w-100", id: "csel_image") %>
+      <div class="carousel-caption d-none d-md-block">
+        <p class="bg-dark">Connecting victims to helpers powered by LINE</p>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signupModal">
+          Sign up
+        </button>
+      </div>
+    </div>
+    <div class="carousel-item" data-interval="10000">
+      <%= image_tag("csel/SBS05.jpg", alt:"sbs image", class: "d-block w-100", id: "csel_image") %>
+      <div class="carousel-caption d-none d-md-block">
+        <p class="bg-secondary">Manage the recovery using real-time map powered by OSM</p>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signupModal">
+          Sign up
+        </button>
+      </div>
+    </div>
   </div>
-<% end %>
+</div>
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+   <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Log in</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
+        
+          <div class="field">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, autocomplete: "current-password" %>
+          </div>
+        
+          <% if devise_mapping.rememberable? -%>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end -%>
+          <br/>
+          <div class="actions">
+            <%= f.submit "Log in" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>    
+  </div>
+</div>
 
-<%= render "devise/shared/links" %>
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+   <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="signupModalLabel">Sign up</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>
+        
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
+        
+          <div class="field">
+            <%= f.label :password %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "new-password" %>
+          </div>
+        
+          <div class="field">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          </div>
+          <br/>
+          <div class="actions">
+            <%= f.submit "Sign up" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>    
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row bg-white">
+    <div class="col-12 mt-1">
+      <h2>Answering Call for Code 2019 challenge</h2>
+    </div>
+  </div>
+

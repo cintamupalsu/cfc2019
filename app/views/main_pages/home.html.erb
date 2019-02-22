@@ -1,2 +1,30 @@
-<h1>MainPages#home</h1>
-<p>Find me in app/views/main_pages/home.html.erb</p>
+
+<div class="row">
+  <div class="col-1">
+    <%= render 'sidemenu' %>
+  </div>
+  <div class="col-11 mt-5">
+    <div id="map"></div>
+  </div>
+</div>
+<script type="text/javascript">
+      L.Icon.Default.imagePath = "/assets";
+      var map = L.map('map').setView([34.947112, 138.402121],15);
+      var osmUrl = "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+      var osmAttrib = "Map data OpenstreetMap contributors";
+      var greenIcon = L.icon({
+          iconUrl: '<%= image_path("SBS_Logo.png") %>',
+          iconSize:     [75, 40], // size of the icon
+          shadowSize:   [50, 64], // size of the shadow
+          iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+          shadowAnchor: [4, 62],  // the same for the shadow
+          popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+      });
+      L.marker([34.956578, 138.403374], {icon: greenIcon}).addTo(map);
+        
+      L.tileLayer(osmUrl,{
+        attribution: osmAttrib,
+        maxZoom: 20,
+      }).addTo(map);
+      // add Marker
+</script>

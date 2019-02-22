@@ -1,0 +1,31 @@
+<header class="navbar navbar-light bg-light fixed-top mb-0 pb-0 shadow rounded">
+  <div class="container-fluid">
+    <a class="navbar-brand mt-0 pt-0 mb-1" href="<%=root_path%>" id="cfc_title">
+      <%= image_tag("menu/logo_icon.png", alt:"cfc logo", size: "30x30", id: "cfc_logo") %><strong class="ml-2">Bzz~</strong>
+    </a>
+    <nav>
+      <ul class="nav mt-0 pt-0 mb-1 mt-0" id="header_navbar">
+        <% if user_signed_in? %>
+          <li class="dropdown nav-link">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Profile<b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Edit Profile", "#", class: "nav-link" %></li>
+              <li class="dropdown-divider"></li>
+              <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %> </li>
+            </ul>
+          </li>
+
+        <% else %>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signupModal">
+            Sign up
+          </button>
+          <button type="button" class="btn btn-primary ml-1" data-toggle="modal" data-target="#loginModal">
+            Log in
+          </button>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>
